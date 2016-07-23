@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status=debug 可以查看log4j的装配过程 -->
+<configuration status="off" monitorInterval="1800">
+	<properties>
+		<property name="LOG_HOME">/log/fish</property>
+		<!-- 日志备份目录 -->
+		<property name="BACKUP_HOME">{LOG_HOME}/backup</property>
+		<property name="STAT_NAME">stat</property>
+		<property name="SERVER_NAME">global</property>
+	</properties>
+	<appenders>
+		<!-- 定义控制台输出 -->
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+		</Console>
+	</appenders>
+	<loggers>
+		<!-- 3rdparty Loggers -->
+		<logger name="org.springframework.core" level="error">
+		</logger>
+		<logger name="org.springframework.beans" level="error">
+		</logger>
+		<logger name="org.springframework.context" level="error">
+		</logger>
+		<logger name="org.springframework.web" level="error">
+		</logger>
+		<logger name="org.apache.http" level="error">
+		</logger>
+		<logger name="log4j.logger.noModule" level="fatal" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.org.mybatis.jpetstore" level="trace" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.com.opensymphony.xwork2" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.com.ibatis" level="trace" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.com.ibatis.common.jdbc.SimpleDataSource" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.com.ibatis.common.jdbc.ScriptRunner" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.org.mybatis" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.java.sql" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.java.sql.Connection" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.java.sql.Statement" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.java.sql.PreparedStatement" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.java.sql.ResultSet" level="debug" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<!-- Root Logger -->
+		<root level="debug">
+			<appender-ref ref="Console" />
+		</root>
+	</loggers>
+</configuration>

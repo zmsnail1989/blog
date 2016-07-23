@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snail.architecture.dao.ResourceDao">
+	<insert id="createResource" parameterType="com.snail.architecture.entity.Resource">
+		insert into sys_resource(name, type, url, permission,
+		parent_id, parent_ids,
+		available,isRoot)
+		values(#{name},#{typeName},#{url},#{permission},#{parentId},#{parentIds},#{available},#{isRoot})
+	</insert>
+
+	<update id="updateResource" parameterType="com.snail.architecture.entity.Resource">
+		update sys_resource set name=#{name}, type=#{typeName},
+		url=#{url},
+		permission=#{permission}, parent_id=#{parentId},
+		parent_ids=#{parentIds}, available=#{available} where id=#{id}
+	</update>
+	
+	<delete id="deleteParentResource">
+		delete from sys_resource where id=#{id}
+	</delete>
+	
+	<delete id="deleteChildResource">
+		delete from sys_resource where parent_ids like #{selfAsParentIds}
+	</delete>
+	
+	<select id="findOne" resultType="com.snail.architecture.entity.Resource">
+		select id, name, type, url, permission, parent_id parentId, parent_ids parentIds, available from sys_resource where id=#{id}
+	</select>
+	
+	<select id="findAll" resultType="com.snail.architecture.entity.Resource">
+		select id, name, type, url, permission, parent_id parentId, parent_ids parentIds, available,isRoot from sys_resource order by concat(parent_ids, id) asc
+	</select>
+	
+	<select id="findMenu" resultType="com.snail.architecture.entity.Resource" >
+		select id, name, type, url, permission, parent_id parentId, parent_ids parentIds, available from sys_resource where isRoot=#{isRoot} order by concat(parent_ids, id) asc
+	</select>
+</mapper>

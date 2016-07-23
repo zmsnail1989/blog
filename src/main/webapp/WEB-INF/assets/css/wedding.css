@@ -1,0 +1,104 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: "microsoft yahei";
+}
+
+.swiper-container {
+    /*  width: 320px;
+      height: 480px;*/
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.swiper-slide {
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    /*background: url(/assets/i/upload/bg.jpg) no-repeat left top;*/
+    /*background-color: #FEC7C4;*/
+    background-size: 100% 100%;
+}
+
+img {
+    display: block;
+}
+
+.swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    opacity: .4;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+@-webkit-keyframes tipmove {
+    0% {
+        bottom: 10px;
+        opacity: 0
+    }
+    50% {
+        bottom: 15px;
+        opacity: 1
+    }
+    100% {
+        bottom: 20px;
+        opacity: 0
+    }
+}
+
+.ani {
+    position: absolute;
+}
+
+.txt {
+    position: absolute;
+}
+
+#array {
+    position: absolute;
+    z-index: 999;
+    -webkit-animation: tipmove 1.5s infinite ease-in-out;
+}
+.invitation-index {
+    width: 100%;
+    height: 100%;
+    background: url(/assets/i/upload/first.jpg) no-repeat left top;
+    background-size: 100% 100%;
+}
+.invitation-logo {
+    width: 100%;
+    height: 100%;
+    background: url(/assets/i/upload/bg-end.jpg) no-repeat left top;
+    background-size: 100% 100%;
+}
+
+/* music play */
+@-webkit-keyframes reverseRotataZ{
+    0%{-webkit-transform: rotateZ(0deg);}
+    100%{-webkit-transform: rotateZ(-360deg);}
+}
+@-webkit-keyframes rotataZ{
+    0%{-webkit-transform: rotateZ(0deg);}
+    100%{-webkit-transform: rotateZ(360deg);}
+}
+#musicControl { position:fixed;right:10px;top:20px;margin-top:0;display:inline-block;z-index:99999999}
+#musicControl a { display:inline-block;width:25px;height:25px;overflow:hidden;background:url('/assets/i/upload/mcbg.png') no-repeat;background-size:100%;}
+#musicControl a audio{width:100%;height:56px;}
+#musicControl a.stop { background-position:left bottom;}
+#musicControl a.on { background-position:0px 1px;-webkit-animation: reverseRotataZ 1.2s linear infinite;}
+#music_play_filter{width:100%;height:100%;overflow:hidden;position:fixed;top:0;left:0;z-index:99999998;}

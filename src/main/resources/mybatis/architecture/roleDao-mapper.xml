@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snail.architecture.dao.RoleDao">
+	<insert id="createRole">
+		insert into sys_role(role, description, resource_ids,
+		available) values(
+		#{role},#{description},#{resStr},#{available}
+		)
+	</insert>
+
+	<update id="updateRole">
+		update sys_role set role=#{role},
+		description=#{description}, resource_ids=#{resStr},
+		available=#{available} where id=#{id}
+	</update>
+
+	<delete id="deleteRole">
+		delete from sys_role where id=#{id}
+	</delete>
+
+	<select id="findOne" resultType="com.snail.architecture.entity.Role">
+		select id, role, description,
+		resource_ids as resourceIdsStr, available from sys_role where id=#{id}
+	</select>
+
+	<select id="findAll" resultType="com.snail.architecture.entity.Role">
+		select id, role, description,
+		resource_ids as resourceIdsStr, available from sys_role
+	</select>
+</mapper>

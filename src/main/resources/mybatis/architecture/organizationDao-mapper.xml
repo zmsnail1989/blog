@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snail.architecture.dao.OrganizationDao">
+	<insert id="createOrganization" parameterType="com.snail.architecture.entity.Organization">
+		insert into
+		sys_organization( name, parent_id, parent_ids, available)
+		values(#{name},#{parentId},#{parentIds},#{available})
+	</insert>
+
+	<update id="updateOrganization">
+		update sys_organization set name=#{name},
+		parent_id=#{parentId}, parent_ids=#{parentIds}, available=#{available}
+		where id=#{id}
+	</update>
+
+	<delete id="deleteParentOrganization">
+		delete from sys_organization where id=#{id}
+	</delete>
+
+	<delete id="deleteChildOrganization">
+		delete from sys_organization where parent_ids like
+		#{selfAsParentIds}
+	</delete>
+
+	<select id="findOne" resultType="com.snail.architecture.entity.Organization">
+		select id, name, parent_id
+		parentId, parent_ids parentIds, available from sys_organization where
+		id=#{id}
+	</select>
+
+	<select id="findAll" resultType="com.snail.architecture.entity.Organization">
+		select id, name, parent_id
+		parentId, parent_ids parentIds, available from sys_organization
+	</select>
+
+	<select id="findAllWithExclude" resultType="com.snail.architecture.entity.Organization">
+		select id, name,
+		parent_id parentId, parent_ids parentIds, available from
+		sys_organization where id!=#{id} and parent_ids not like
+		#{selfAsParentIds}
+	</select>
+
+	<update id="moveParent">
+		update sys_organization set parent_id=#{parentId},parent_ids=#{parentIds}
+		where id=#{id}
+	</update>
+
+	<update id="moveChild">
+		update sys_organization set parent_ids=concat(#{selfAsParentIds},
+		substring(parent_ids, length(#{selfAsParentIds}))) where parent_ids
+		like #{selfAsParentIds}
+	</update>
+</mapper>

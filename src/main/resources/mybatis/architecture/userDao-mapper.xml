@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snail.architecture.dao.UserDao">
+	<insert id="createUser" parameterType="com.snail.architecture.entity.User">
+		insert into
+		sys_user(organization_id, username, password, salt, role_ids, locked)
+		values(#{organizationId},#{username},#{password},#{salt},#{roleStr},#{locked})
+	</insert>
+
+	<update id="updateUser" parameterType="com.snail.architecture.entity.User">
+		update sys_user set
+		organization_id=#{organizationId},username=#{username},
+		password=#{password}, salt=#{salt}, role_ids=#{roleStr},
+		locked=#{locked}
+		where id=#{id}
+	</update>
+	
+	<update id="updateUserpassword" parameterType="com.snail.architecture.entity.User">
+		update sys_user set
+		password=#{password}, salt=#{salt}
+		where id=#{id}
+	</update>
+
+	<delete id="deleteUser">
+		delete from sys_user where id=#{id}
+	</delete>
+
+	<select id="findOne" resultType="com.snail.architecture.entity.User">
+		select id, organization_id
+		organizationId, username, password, salt, role_ids as roleIdsStr,
+		locked from sys_user where id=#{id}
+	</select>
+
+	<select id="findAll" resultType="com.snail.architecture.entity.User">
+		select id, organization_id
+		organizationId, username, password, salt, role_ids as roleIdsStr,
+		locked from sys_user
+	</select>
+	
+	<select id="findByUsername" resultType="com.snail.architecture.entity.User">
+		select id, organization_id organizationId, username, password, salt, role_ids as roleIdsStr, locked from sys_user where username=#{username}
+	</select>
+</mapper>

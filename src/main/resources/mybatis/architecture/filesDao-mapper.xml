@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snail.architecture.dao.FilesDao">
+	<insert id="saveFiles" parameterType="com.snail.architecture.entity.FilesBo">
+		INSERT INTO `files` (`suffix`, `name`,real_url, `url`,up_user)
+		VALUES
+		(#{suffix}, #{name},#{real_url}, #{url},#{up_user})
+
+	</insert>
+
+	<delete id="deleteFiles">
+		DELETE
+		FROM `files`
+		<where>
+			<if test="ids!=null">
+			   id in
+				<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+		            #{item}
+		        </foreach>
+			</if>
+		</where>
+	</delete>
+	
+	<select id="countFiles" resultType="int">
+		select count(id) cnt from files
+	</select>
+
+	<select id="findAll" resultType="com.snail.architecture.entity.FilesBo">
+		SELECT
+		  `id`,
+		  `suffix`,
+		  `name`,
+		  real_url,
+		  `url`,
+		  `update`,
+		  `up_user`
+		FROM `blog`.`files`
+		<where>
+			<if test="up_user!=null">
+				and up_user=#{up_user}
+			</if>
+		</where>
+		<if test="limit!=0" >
+			LIMIT #{start}, #{limit}
+		</if>
+	</select>
+	
+	<select id="findRealPath" resultType="String">
+		SELECT
+		  real_url
+		FROM `blog`.`files`
+		<where>
+			<if test="up_user!=null">
+				and up_user=#{up_user}
+			</if>
+			<if test="ids!=null">
+			   and id in
+				<foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+		            #{item}
+		        </foreach>
+			</if>
+		</where>
+		LIMIT 0, 1000
+	</select>
+</mapper>
