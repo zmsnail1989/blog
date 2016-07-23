@@ -35,7 +35,7 @@
 		<jedis.version>2.8.1</jedis.version>
 		<!-- mongodb -->
 		<spring.mongo.version>1.5.6.RELEASE</spring.mongo.version>
-		<!-- protobuff -->
+		<!--protostuff-->
 		<protostuff.version>1.0.7</protostuff.version>
 	</properties>
 
