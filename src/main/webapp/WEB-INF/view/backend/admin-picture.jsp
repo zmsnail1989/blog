@@ -184,6 +184,8 @@
 							ajax : {
 								url : "/backend/picmanage/getAll"
 							},
+
+
 							"aoColumnDefs" : [ {
 								"bSortable" : false,
 								"aTargets" : [ 0, 6 ]
