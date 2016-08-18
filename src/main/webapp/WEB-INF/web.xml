@@ -80,7 +80,7 @@
     </filter-mapping>
 
     <servlet>
-        <servlet-name>spring</servlet-name>
+        <servlet-name>blog</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
@@ -90,7 +90,7 @@
         <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
-        <servlet-name>spring</servlet-name>
+        <servlet-name>blog</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 	<welcome-file-list>

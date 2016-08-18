@@ -21,4 +21,9 @@ public class CacheConstants {
 	public static final int ExpirMins_360 = 360; // 360分钟
 	public static final int ExpirMins_720 = 720; // 半天
 	public static final int ExpirMins_1080 = 1080; // 18小时 3/4天
+
+	public static final String CACHE_UNDER_LINE_SEPERATE_CHAR = "_";
+	public static final String CACHE_UNDER_LINE_SEPERATE_COMMA = ",";
+	public static final String NULL_OBJECT = "N/A"; // 存放一个简短的字符串对象，表示当DB里没数据时候的缩写
+
 }

@@ -35,12 +35,26 @@
 		<jedis.version>2.8.1</jedis.version>
 		<!-- mongodb -->
 		<spring.mongo.version>1.5.6.RELEASE</spring.mongo.version>
-		<!--protostuff-->
+		<!--protostuff -->
 		<protostuff.version>1.0.7</protostuff.version>
+		<!-- hbase client -->
+		<hbase-client.version>0.98.3-hadoop2</hbase-client.version>
 	</properties>
 
 	<dependencies>
-	 	<!-- Test Artifacts -->
+		<!--zk -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.zookeeper</groupId> -->
+<!-- 			<artifactId>zookeeper</artifactId> -->
+<!-- 			<version>3.4.6</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.github.adyliu</groupId> -->
+<!-- 			<artifactId>zkclient</artifactId> -->
+<!-- 			<version>2.1.1</version> -->
+<!-- 		</dependency> -->
+
+		<!-- Test Artifacts -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -53,7 +67,7 @@
 			<version>${org.springframework.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -77,9 +91,9 @@
 			<version>2.5.3</version>
 		</dependency>
 		<dependency>
-		  <groupId>com.alibaba</groupId>
-		  <artifactId>fastjson</artifactId>
-		  <version>1.2.9</version>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.9</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
@@ -249,9 +263,9 @@
 		</dependency>
 		<!-- spring-data-mongodb -->
 		<dependency>
-		  <groupId>org.springframework.data</groupId>
-		  <artifactId>spring-data-mongodb</artifactId>
-		  <version>${spring.mongo.version}</version>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>${spring.mongo.version}</version>
 		</dependency>
 		<!-- protostuff -->
 		<dependency>
@@ -263,6 +277,21 @@
 			<groupId>com.dyuproject.protostuff</groupId>
 			<artifactId>protostuff-runtime</artifactId>
 			<version>${protostuff.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hbase</groupId>
+			<artifactId>hbase-client</artifactId>
+			<version>${hbase-client.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>netty</artifactId>
+					<groupId>io.netty</groupId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.zookeeper</groupId>
+					<artifactId>zookeeper</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 

@@ -26,13 +26,13 @@ public class OrganizationController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
-        return "/backend/organization/index";
+        return "/backend/admin-org-index";
     }
 
     @RequestMapping(value = "/tree", method = RequestMethod.GET)
     public String showTree(Model model) {
         model.addAttribute("organizationList", organizationService.findAll());
-        return "/backend/organization/tree";
+        return "/backend/admin-org-tree";
     }
 
     @RequestMapping(value = "/{parentId}/appendChild", method = RequestMethod.GET)
@@ -44,7 +44,7 @@ public class OrganizationController {
         child.setParentIds(parent.makeSelfAsParentIds());
         model.addAttribute("child", child);
         model.addAttribute("op", "新增");
-        return "/backend/organization/appendChild";
+        return "/backend/admin-org-appendChild";
     }
 
     @RequestMapping(value = "/{parentId}/appendChild", method = RequestMethod.POST)
@@ -56,7 +56,7 @@ public class OrganizationController {
     @RequestMapping(value = "/{id}/maintain", method = RequestMethod.GET)
     public String showMaintainForm(@PathVariable("id") Long id, Model model) {
         model.addAttribute("organization", organizationService.findOne(id));
-        return "/backend/organization/maintain";
+        return "/backend/admin-org-maintain";
     }
 
     @RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
@@ -79,7 +79,7 @@ public class OrganizationController {
         Organization source = organizationService.findOne(sourceId);
         model.addAttribute("source", source);
         model.addAttribute("targetList", organizationService.findAllWithExclude(source));
-        return "/backend/organization/move";
+        return "/backend/admin-org-move";
     }
 
     @RequestMapping(value = "/{sourceId}/move", method = RequestMethod.POST)
@@ -94,7 +94,7 @@ public class OrganizationController {
 
     @RequestMapping(value = "/success", method = RequestMethod.GET)
     public String success() {
-        return "/backend/organization/success";
+        return "/backend/admin-org-success";
     }
 
 
